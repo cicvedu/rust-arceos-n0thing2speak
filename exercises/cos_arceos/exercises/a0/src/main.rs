@@ -10,6 +10,7 @@ use axstd::println;
 #[cfg(feature = "axstd")]
 use axstd::println_prefix;
 
+
 #[cfg_attr(feature = "axstd", no_mangle)]
 fn main() {
     println!("Hello, world!");
