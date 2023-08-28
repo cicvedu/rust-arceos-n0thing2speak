@@ -176,3 +176,4 @@ unsafe impl VirtIoHal for VirtIoHalImpl {
     #[inline]
     unsafe fn unshare(_paddr: PhysAddr, _buffer: NonNull<[u8]>, _direction: BufferDirection) {}
 }
+

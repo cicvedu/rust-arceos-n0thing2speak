@@ -1,9 +1,15 @@
-use driver_net::{NetDriverOps, EthernetAddress, NetBufPtr};
-use driver_common::{DeviceType, DevResult};
+use cfg_if::cfg_if;
 
-pub struct NetFilter<T: NetDriverOps> {
+pub struct NetFilter<T:> {
     pub inner: T,
 }
+cfg_if! {
+    if #[cfg(feature="virtio-net")] {
+        use driver_net::{NetDriverOps, EthernetAddress, NetBufPtr};
+        use driver_common::{DeviceType, DevResult};
+// pub struct NetFilter<T: NetDriverOps> {
+//     pub inner: T,
+// }
 
 impl<T: NetDriverOps> NetFilter<T> {
     pub fn device_type(&self) -> DeviceType {
@@ -54,5 +60,5 @@ impl<T: NetDriverOps> NetFilter<T> {
         self.inner.alloc_tx_buffer(size)
     }
 }
-
-
+}
+}
